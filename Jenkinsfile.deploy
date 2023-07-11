@@ -1,0 +1,37 @@
+pipeline {
+  agent {
+    kubernetes {
+      yaml """
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        labels:
+          jenkins: maven
+      spec:
+        containers:
+        - name: helm
+          image: alpine/helm:3.5.4
+          command:
+          - sleep
+          - infinity
+      """
+    }
+  }
+
+  stages {
+
+    // Build Lint Chart
+    stage('Helm Lint Chart') {
+      steps {
+        container('helm') {
+          git branch: 'main', url: 'https://github.com/SamBird/webgoat-build.git'
+          sh 'cd ./webgoat-chart'
+          sh 'helm lint .'
+          sh 'helm package  .'
+        }
+      }
+    }
+    
+  
+  }
+}
