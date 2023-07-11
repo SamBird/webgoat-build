@@ -1,0 +1,3 @@
+apiVersion: v2
+name: webgoat
+version: 0.1.0

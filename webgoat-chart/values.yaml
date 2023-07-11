@@ -1,0 +1,19 @@
+# Default values for webgoat.
+
+image:
+  repository: nginx
+  tag: latest
+
+service:
+  port: 8080
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  hosts:
+    - host: nginx.dev.tier1-bank.com
+      paths: ['/']
+
+
+
