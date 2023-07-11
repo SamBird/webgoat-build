@@ -58,13 +58,13 @@ pipeline {
     }
 
     // Run Sonar Scan
-    stage('SonarScan') {
-      steps {
-        container('sonar') {
-            echo 'Executing Sonar Scan...'
-        }
-      }
-    }
+    // stage('SonarScan') {
+    //   steps {
+    //     container('sonar') {
+    //         echo 'Executing Sonar Scan...'
+    //     }
+    //   }
+    // }
 
     // Build Image using Docker in Docker
     stage('Build Docker Image') {
@@ -74,6 +74,15 @@ pipeline {
         }
       }
     }
+
+    // Push to GCR
+    // stage('Push image to GCR') {
+    //   steps {
+    //     container('docker') {
+    //       echo 'Pushing image to GCR'
+    //     }
+    //   }
+    // }
 
     // Build Lint Chart
     stage('Helm Lint Chart') {
