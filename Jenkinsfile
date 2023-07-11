@@ -79,6 +79,7 @@ pipeline {
     stage('Helm Lint Chart') {
       steps {
         container('helm') {
+          git branch: 'main', url: 'https://github.com/SamBird/webgoat-build.git'
           sh 'cd ./webgoat-chart'
           sh 'helm lint .'
           sh 'helm package  .'
